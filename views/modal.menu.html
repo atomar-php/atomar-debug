@@ -1,0 +1,16 @@
+{% extends "_lightbox.html" %}
+
+{% block lightbox %}
+<div class="row">
+  <div class="col-sm-12">
+    <a href="/debug/post/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-default">Simulate a POST</a>
+    <a href="{{ sys.site_url }}!/cron/?token={{ sys.cron_token }}" target="_blank" class="btn btn-default">Run Cron</a>
+    <a href="/debug/log/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-default">System Log</a>
+  </div>
+</div>
+<p></p>
+{% endblock %}
+
+{% block lightbox_controls %}
+  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+{% endblock %}

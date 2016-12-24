@@ -1,0 +1,44 @@
+{% extends "_lightbox.html" %}
+
+{% block lightbox %}
+<div class="row">
+  <div class="col-xs-12">
+    <a href="/!/debug/clear_log/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-warning pull-left" data-confirm="Are you sure you want to clear the log?">Clear Log</a>
+    <a href="/debug/menu/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-default pull-right">Return to Menu</a>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-bordered table-hover">
+      {% for log in logs %}
+      {% if log.type == 'error' %}
+        {% set class = 'alert-danger' %}
+      {% elseif log.type == 'notice' %}
+        {% set class = 'alert-info' %}
+      {% elseif log.type == 'warning' %}
+        {% set class = 'alert-warning' %}
+      {% elseif log.type == 'success' %}
+        {% set class = 'alert-success' %}
+      {% endif %}
+      <tr>
+        <td><span class="badge {{class}}" data-static="true">{{ log.type }}</span> </td>
+        <td>
+          <p>{{ log.created_at }}</p>
+          <p>
+            {{ log.message }}
+            <span class="glyphicon glyphicon-info-sign pop pull-right" data-placement="left" data-trigger="hover" data-content="{{log.data}}"></span>
+          </p>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+{% block lightbox_controls %}
+  <a href="/!/debug/clear_log/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-warning pull-left" data-confirm="Are you sure you want to clear the log?">Clear Log</a>
+  <a href="/debug/menu/?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-default" >Return to Menu</a>
+  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+{% endblock %}

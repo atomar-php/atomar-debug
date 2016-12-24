@@ -1,0 +1,46 @@
+{% extends "_lightbox.html" %}
+
+{% block lightbox %}
+<div class="row">
+  {% if has_response %}
+  <div class="col-xs-6">
+    <label>Response:</label>
+    <div id="response-container">
+      <script id="response-data" type="text/template">
+        {{response|raw}}
+      </script>
+        <iframe id="response-sandbox"></iframe>
+        <script>
+            var doc = document.getElementById('response-sandbox').contentWindow.document;
+            var response = document.getElementById('response-data').innerHTML;
+            doc.open();
+            doc.write(response);
+            doc.close();
+        </script>
+    </div>
+  </div>
+  <div class="col-xs-6">
+  {% else %}
+  <div class="col-sm-12">
+  {% endif %}
+    <div class="row">
+      <div class="col-sm-12">
+        <label for="field-url">Url:</label>
+        <input type="text" id="field-url" name="url" class="form-control" placeholder="http://www.google.com" value="{{url}}" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <label for="field-variables">Variables: <small>as json</small></label>
+        <textarea name="variables" id="field-variables" cols="30" rows="7" class="form-control" placeholder="{{example}}" >{{variables}}</textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<p></p>
+{% endblock %}
+
+{% block lightbox_controls %}
+  <a href="/debug/menu?_lightbox_id={{ lightbox.lightbox_id }}" class="btn btn-default" >Return to Menu</a>
+  <button type="submit" class="btn btn-primary modal-submit">Submit</button>
+{% endblock %}

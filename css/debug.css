@@ -1,0 +1,43 @@
+#debugger {
+  cursor: hand;
+  cursor: pointer;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1020;
+  color:#fff;
+}
+#debugger .progress {
+  -webkit-border-radius:0;
+  -moz-border-radius:0;
+  border-radius:0;
+  margin-bottom: 0;
+}
+#debugger .progress .progress-bar {
+  font-family:Helvetica;
+  font-size:14px;
+  padding-left:5px;
+  padding-right:5px;
+  width:100%;
+}
+#debugger .debug-menu-btn {
+  position:relative;
+  text-decoration:none;
+  right:-5px;
+}
+#debugger .debug-menu-title {
+  display:none;
+  color:#fff;
+  position:absolute;
+  right:10px;
+  padding-right:10px;
+}
+body.debugger {
+  margin-top:20px;
+}
+body.plain {
+  margin-top:0px;
+}
+body.plain #debugger {
+  display:none;
+}
